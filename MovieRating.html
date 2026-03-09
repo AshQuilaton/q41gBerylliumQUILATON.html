@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Movies</title>
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+        body {
+            font-family: Impact, 'Arial Narrow Bold', sans-serif;
+            background: #7f2623;
+            margin: 0;
+            padding: 67px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: #fcf8f6;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 6 4px 7px rgba(67, 25, 25, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #744848;
+        }
+
+        label {
+            display: block;
+            margin: 6px 0 7px;
+            font-weight: bold;
+            color: #a34a4a;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #a34a4a;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .star {
+            font-size: 28px;
+            color: fcf8f6;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .star:hover,
+        .star.selected {
+            color: gold;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #400808;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #b30000;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #643b3b;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .rating-display {
+            color: rgb(173, 33, 33);
+            font-size: 20px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Add Movies</h1>
+        <form id="dForm">
+            Title :<input type="text" id="MovieTitle" /><br>
+            Year :<input type="number" id="YearPublished" /><br>
+            <label for="Genre">Genre:</label>
+            <select name="MovieGenre" id="moviegenrechoosing">
+                <option value="horror">Horror</option>
+                <option value="action">Action</option>
+                <option value="adventure">Adventure</option>
+                <option value="romance">Romance</option>
+                <option value="comedy">Comedy</option>
+                <option value="drama">Drama</option>
+                <option value="scifi">Sci-Fi</option>
+            </select>
+            <label>Rating:</label>
+            <div class="stars" id="ratingStars">
+                <span class="star" data-value="1">✮</span>
+                <span class="star" data-value="2">✮</span>
+                <span class="star" data-value="3">✮</span>
+                <span class="star" data-value="4">✮</span>
+                <span class="star" data-value="5">✮</span>
+            </div>
+
+            <button onclick="addMovie()">Add Movie</button>
+
+            <h2>Movie List</h2>
+            <ul id="movieList"></ul>
+    </div>
+
+    <script>
+        let selectedRating = 0;
+
+        // Handle star clicks
+        document.querySelectorAll(".star").forEach(star => {
+            star.addEventListener("click", function () {
+                selectedRating = this.getAttribute("data-value");
+                updateStars(selectedRating);
+            });
+        });
+
+        function updateStars(rating) {
+            document.querySelectorAll(".star").forEach(star => {
+                star.classList.remove("selected");
+                if (star.getAttribute("data-value") <= rating) {
+                    star.classList.add("selected");
+                }
+            });
+        }
+
+        window.onload = displayMovies;
+    </script>
+    </script>
+</body>
+
+</html>

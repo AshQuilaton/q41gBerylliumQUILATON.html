@@ -22,6 +22,11 @@
             box-shadow: 6 4px 7px rgba(67, 25, 25, 0.1);
         }
 
+        h1 {
+            text-align: center;
+            color: #7d0d0d;
+        }
+
         h2 {
             text-align: center;
             color: #744848;
@@ -31,7 +36,7 @@
             display: block;
             margin: 6px 0 7px;
             font-weight: bold;
-            color: #a34a4a;
+            color: #000000;
         }
 
         input[type="text"],
@@ -53,7 +58,7 @@
 
         .star {
             font-size: 28px;
-            color: fcf8f6;
+            color: #5f530c;
             cursor: pointer;
             transition: color 0.2s;
         }
@@ -149,9 +154,10 @@
                 }
             });
         }
-
+        let savedmovies = localStorage.getItem("movies")
+        if (!savedmovies) { MovieList = {} }
+        else MovieList = JSON.parse(savedmovies)
         window.onload = displayMovies;
-    </script>
     </script>
 </body>
 
